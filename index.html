@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MyBank | Personal Banking</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= LOGIN / CREATE ACCOUNT ================= -->
+
+    <section id="authPage" class="page auth-page">
+
+        <div class="auth-wrapper">
+
+            <div class="auth-brand">
+
+                <div class="brand-icon">🏦</div>
+
+                <h1>MyBank</h1>
+
+                <p>
+                    Simple, secure and personal banking
+                    made for everyday use.
+                </p>
+
+            </div>
+
+
+            <div class="auth-content">
+
+                <h2 id="authTitle">Welcome back</h2>
+
+                <p class="auth-subtitle" id="authSubtitle">
+                    Login to access your account.
+                </p>
+
+
+                <div class="tabs">
+
+                    <button
+                        class="tab active"
+                        id="loginTab"
+                        onclick="showLogin()">
+                        Login
+                    </button>
+
+                    <button
+                        class="tab"
+                        id="createTab"
+                        onclick="showCreateAccount()">
+                        Create Account
+                    </button>
+
+                </div>
+
+
+                <div id="authMessage" class="message"></div>
+
+
+                <!-- LOGIN FORM -->
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label>Account Number</label>
+
+                        <input
+                            type="text"
+                            id="loginAccount"
+                            placeholder="Enter account number"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>PIN</label>
+
+                        <input
+                            type="password"
+                            id="loginPin"
+                            placeholder="Enter 4 digit PIN"
+                            maxlength="4"
+                            inputmode="numeric"
+                            required>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary full-btn">
+
+                        Login
+
+                    </button>
+
+                </form>
+
+
+                <!-- CREATE ACCOUNT FORM -->
+
+                <form id="createForm" class="hidden">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input
+                            type="text"
+                            id="createName"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Account Number</label>
+
+                        <input
+                            type="text"
+                            id="createAccount"
+                            placeholder="Choose account number"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>4 Digit PIN</label>
+
+                        <input
+                            type="password"
+                            id="createPin"
+                            placeholder="Create PIN"
+                            maxlength="4"
+                            inputmode="numeric"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Initial Balance</label>
+
+                        <input
+                            type="number"
+                            id="createBalance"
+                            placeholder="Enter initial balance"
+                            min="0"
+                            required>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary full-btn">
+
+                        Create Account
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section
+        id="dashboardPage"
+        class="page dashboard-page hidden">
+
+        <nav class="navbar">
+
+            <div class="nav-inner">
+
+                <div class="logo">
+
+                    <div class="logo-icon">🏦</div>
+
+                    MyBank
+
+                </div>
+
+
+                <div class="user-area">
+
+                    <span
+                        class="user-name"
+                        id="navUserName">
+                    </span>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="logout()">
+
+                        Logout
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+        <main class="dashboard">
+
+            <div class="welcome">
+
+                <h1 id="welcomeText">
+                    Welcome back 👋
+                </h1>
+
+                <p>
+                    Your personal banking dashboard.
+                </p>
+
+            </div>
+
+
+            <!-- BALANCE -->
+
+            <div class="balance-card">
+
+                <div class="balance-label">
+                    AVAILABLE BALANCE
+                </div>
+
+                <div
+                    class="balance"
+                    id="balanceDisplay">
+                    ₹0
+                </div>
+
+                <div class="account-number">
+
+                    Account Number:
+                    <span id="dashboardAccount"></span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION BUTTONS -->
+
+            <div class="action-grid">
+
+                <button
+                    class="action-card"
+                    onclick="openDeposit()">
+
+                    <div class="action-icon">
+                        💰
+                    </div>
+
+                    <h3>Deposit</h3>
+
+                    <p>
+                        Add money to your account
+                    </p>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    onclick="openWithdraw()">
+
+                    <div class="action-icon">
+                        💸
+                    </div>
+
+                    <h3>Withdraw</h3>
+
+                    <p>
+                        Withdraw money securely
+                    </p>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    onclick="showTransactions()">
+
+                    <div class="action-icon">
+                        📜
+                    </div>
+
+                    <h3>Transactions</h3>
+
+                    <p>
+                        View transaction history
+                    </p>
+
+                </button>
+
+
+                <button
+                    class="action-card"
+                    onclick="openChangePin()">
+
+                    <div class="action-icon">
+                        🔑
+                    </div>
+
+                    <h3>Change PIN</h3>
+
+                    <p>
+                        Update your security PIN
+                    </p>
+
+                </button>
+
+            </div>
+
+
+            <!-- RECENT TRANSACTIONS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        Recent Transactions
+                    </h2>
+
+                    <button
+                        class="btn btn-secondary"
+                        onclick="showTransactions()">
+
+                        View All
+
+                    </button>
+
+                </div>
+
+
+                <div id="recentTransactions"></div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+
+    <!-- ================= MODAL ================= -->
+
+    <div
+        id="modal"
+        class="modal hidden">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Transaction
+                </h2>
+
+                <button
+                    class="close-btn"
+                    onclick="closeModal()">
+
+                    ×
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="modalMessage"
+                class="message">
+            </div>
+
+
+            <div id="modalContent"></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
